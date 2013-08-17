@@ -1,8 +1,0 @@
-body{
-    min-width:357px;
-    overflow-x:hidden;
-}
-
-#output {
-    background-color:grey;
-}
