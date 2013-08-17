@@ -2,3 +2,16 @@ body{
     min-width:357px;
     overflow-x:hidden;
 }
+
+#output {
+    background-image: linear-gradient(bottom, rgb(227,243,255) 47%, rgb(235,245,250) 74%, rgb(250,255,255) 87%);
+    background-image: -webkit-linear-gradient(bottom, rgb(227,243,255) 47%, rgb(235,245,250) 74%, rgb(250,255,255) 87%);
+    background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.47, rgb(227,243,255)),
+            color-stop(0.74, rgb(235,245,250)),
+            color-stop(0.87, rgb(250,255,255))
+    );
+}
