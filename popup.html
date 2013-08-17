@@ -3,51 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Prevezhdam</title>
+    <link type="text/css" href="style.css" rel="stylesheet">
+    <script src="popup.js"></script>
 </head>
-<link type="text/css" href="style.css" rel="stylesheet">
-<script type="text/javascript" src="style.css"></script>
 <body>
     <h1>Prevezhdam</h1>
     <div id="content">
-        <form action="inputFetch.perl">
 
-            <div id="languageChoice">
-                <label for="originalLanguage">
-                    <select id="originalLanguage" name="originalLanguage">
-                        <option value>From:</option>
-                        <option value="English">English</option>
-                        <option value="French">French</option>
-                    </select>
-                </label>
+        <div id="languageChoice">
+            <label for="originalLanguage">
+                <select id="originalLanguage" name="originalLanguage">
+                    <option value>From:</option>
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                </select>
+            </label>
 
-                <label for="translatedLanguage">
-                    <select id="translatedLanguage" name="translatedLanguage">
-                        <option value>To:</option>
-                        <option value="English">English</option>
-                        <option value="French">French</option>
-                    </select>
-                </label>
-            </div> <!-- close languageChoice -->
-
-
-            <div id="originalText">
-                <label for="input">
-                    <textarea id="input" name="input" autocomplete="off"></textarea>
-                </label>
-            </div> <!-- close originalText -->
+            <label for="translatedLanguage">
+                <select id="translatedLanguage" name="translatedLanguage">
+                    <option value>To:</option>
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                </select>
+            </label>
+        </div> <!-- close languageChoice -->
 
 
-            <div id="translatedText">
-                <label for="translatedText">
-                    <textarea id="output" name="output" autocomplete="off"></textarea>
-                </label>
-            </div> <!-- close translatedText -->
+        <div id="originalText">
+            <label for="input">
+                <textarea id="input" name="input" autocomplete="off"></textarea>
+            </label>
+        </div> <!-- close originalText -->
 
-            <div>
-                <input type="submit" name="submit" id="submit" value="Translate" />
-            </div>
 
-        </form>
+        <div id="translatedText">
+            <label for="translatedText">
+                <textarea id="output" name="output" autocomplete="off"></textarea>
+            </label>
+        </div> <!-- close translatedText -->
+
+        <div>
+            <input type="submit" name="submit" id="submit" value="Translate" />
+        </div>
+
     </div> <!-- close content -->
 </body>
 </html>
