@@ -4,7 +4,44 @@
     <meta charset="UTF-8">
     <title>Translator &beta;</title>
     <link type="text/css" href="style.css" rel="stylesheet">
-    <script src="popup.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        function requestTranslation(o) {
+            var SELECT = "json";
+            var FORMAT = "json";
+            var QUERY = document.getElementById('input').value.replace(/\s/g, '%20');
+            var ENGINE = "google.translate";
+            var TOLANGUAGE = "fr";
+            var FUNCTION = "requestTranslation"
+
+            var script = document.createElement("script");
+            var SRC = "http://query.yahooapis.com/v1/public/yql?q=select%20" + 
+                SELECT +
+                "%20from%20" +
+                ENGINE + 
+                "%20where%20q%3D%22" +
+                QUERY +
+                "%22%20and%20target%3D%22" +
+                TOLANGUAGE + 
+                "%22%3B&format=" +
+                FORMAT +
+                "&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=" +
+                FUNCTION;
+            script.src = SRC;
+            $("body").append(script);           
+
+            var items = o.query.results.json[0].json.json.json[0];
+
+            //var output = '';
+            //for(var i=0;i<items.length;i++){
+            //  var translation = items[0].json.json[i];
+            //  output += "<h3>"+translation+"</h3>";
+            //}
+            // Place news stories in div tag
+
+            document.getElementById('output').innerHTML = items;
+        } 
+    </script>
 </head>
 <body>
 
@@ -44,7 +81,7 @@
         </div> <!-- close translatedText -->
 
         <div id="translateButton">
-            <input type="submit" name="submit" id="submit" value="Translate" />
+            <input type="submit" name="submit" id="submit" value="Translate" onclick="requestTranslation()" />
         </div>
 
     </div> <!-- close content -->
