@@ -5,43 +5,7 @@
     <title>Translator &beta;</title>
     <link type="text/css" href="style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>
-        function requestTranslation(o) {
-            var SELECT = "json";
-            var FORMAT = "json";
-            var QUERY = document.getElementById('input').value.replace(/\s/g, '%20');
-            var ENGINE = "google.translate";
-            var TOLANGUAGE = "fr";
-            var FUNCTION = "requestTranslation"
-
-            var script = document.createElement("script");
-            var SRC = "http://query.yahooapis.com/v1/public/yql?q=select%20" + 
-                SELECT +
-                "%20from%20" +
-                ENGINE + 
-                "%20where%20q%3D%22" +
-                QUERY +
-                "%22%20and%20target%3D%22" +
-                TOLANGUAGE + 
-                "%22%3B&format=" +
-                FORMAT +
-                "&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=" +
-                FUNCTION;
-            script.src = SRC;
-            $("body").append(script);           
-
-            var items = o.query.results.json[0].json.json.json[0];
-
-            //var output = '';
-            //for(var i=0;i<items.length;i++){
-            //  var translation = items[0].json.json[i];
-            //  output += "<h3>"+translation+"</h3>";
-            //}
-            // Place news stories in div tag
-
-            document.getElementById('output').innerHTML = items;
-        } 
-    </script>
+    <script src="popup.js"></script>
 </head>
 <body>
 
@@ -51,17 +15,157 @@
         <div id="languageChoice">
             <label for="originalLanguage">
                 <select id="originalLanguage" name="originalLanguage">
-                    <option value>From:</option>
-                    <option value="English">English</option>
-                    <option value="French">French</option>
+                    <option value>Detect Language</option>
+                    <option value="af">Afrikaans</option>
+                    <option value="sq">Albanian</option>
+                    <option value="ar">Arabic</option>
+                    <option value="hy">Armenian</option>
+                    <option value="az">Azerbaijani</option>
+                    <option value="eu">Basque</option>
+                    <option value="be">Belarusian</option>
+                    <option value="bn">Bengali</option>
+                    <option value="bs">Bosnian</option>
+                    <option value="bg">Bulgarian</option>
+                    <option value="ca">Catalan</option>
+                    <option value="ceb">Cebuano</option>
+                    <option value="zh-CN">Chienese</option>
+                    <option value="hr">Croatian</option>
+                    <option value="cs">Czech</option>
+                    <option value="da">Danish</option>
+                    <option value="nl">Dutch</option>
+                    <option value="en">English</option>
+                    <option value="eo">Esperanto</option>
+                    <option value="et">Estonian</option>
+                    <option value="tl">Filipino</option>
+                    <option value="fi">Finnish</option>
+                    <option value="fr">French</option>
+                    <option value="gl">Galician</option>
+                    <option value="ka">Georgian</option>
+                    <option value="de">German</option>
+                    <option value="el">Greek</option>
+                    <option value="gu">Gujarati</option>
+                    <option value="ht">Haitian Creole</option>
+                    <option value="iw">Hebrew</option>
+                    <option value="hi">Hindi</option>
+                    <option value="hmn">Hmong</option>
+                    <option value="hu">Hungarian</option>
+                    <option value="is">Icelandic</option>
+                    <option value="id">Indonesian</option>
+                    <option value="ga">Irish</option>
+                    <option value="it">Italian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="jw">Javanese</option>
+                    <option value="kn">Kannada</option>
+                    <option value="km">Khmer</option>
+                    <option value="ko">Korean</option>
+                    <option value="lo">Lao</option>
+                    <option value="la">Latin</option>
+                    <option value="lv">Latvian</option>
+                    <option value="lt">Lithuanian</option>
+                    <option value="mk">Macedonian</option>
+                    <option value="ms">Malay</option>
+                    <option value="mt">Maltese</option>
+                    <option value="mr">Marathi</option>
+                    <option value="no">Norwegian</option>
+                    <option value="fa">Persian</option>
+                    <option value="pl">Polish</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="ro">Romanian</option>
+                    <option value="ru">Russian</option>
+                    <option value="sr">Serbian</option>
+                    <option value="sk">Slovak</option>
+                    <option value="sl">Slovenian</option>
+                    <option value="es">Spanish</option>
+                    <option value="sw">Swahili</option>
+                    <option value="sv">Swedish</option>
+                    <option value="ta">Tamil</option>
+                    <option value="te">Telugu</option>
+                    <option value="th">Thai</option>
+                    <option value="tr">Turkish</option>
+                    <option value="uk">Ukrainian</option>
+                    <option value="ur">Urdu</option>
+                    <option value="vi">Vietnamese</option>
+                    <option value="cy">Welsh</option>
+                    <option value="yi">Yiddish</option>
                 </select>
             </label>
 
+            <button id="reverse">&harr;</button>
+
             <label for="translatedLanguage">
                 <select id="translatedLanguage" name="translatedLanguage">
-                    <option value>To:</option>
-                    <option value="English">English</option>
-                    <option value="French">French</option>
+                    <option value></option>
+                    <option value="af">Afrikaans</option>
+                    <option value="sq">Albanian</option>
+                    <option value="ar">Arabic</option>
+                    <option value="hy">Armenian</option>
+                    <option value="az">Azerbaijani</option>
+                    <option value="eu">Basque</option>
+                    <option value="be">Belarusian</option>
+                    <option value="bn">Bengali</option>
+                    <option value="bs">Bosnian</option>
+                    <option value="bg">Bulgarian</option>
+                    <option value="ca">Catalan</option>
+                    <option value="ceb">Cebuano</option>
+                    <option value="zh-CN">Chienese</option>
+                    <option value="hr">Croatian</option>
+                    <option value="cs">Czech</option>
+                    <option value="da">Danish</option>
+                    <option value="nl">Dutch</option>
+                    <option value="en">English</option>
+                    <option value="eo">Esperanto</option>
+                    <option value="et">Estonian</option>
+                    <option value="tl">Filipino</option>
+                    <option value="fi">Finnish</option>
+                    <option value="fr">French</option>
+                    <option value="gl">Galician</option>
+                    <option value="ka">Georgian</option>
+                    <option value="de">German</option>
+                    <option value="el">Greek</option>
+                    <option value="gu">Gujarati</option>
+                    <option value="ht">Haitian Creole</option>
+                    <option value="iw">Hebrew</option>
+                    <option value="hi">Hindi</option>
+                    <option value="hmn">Hmong</option>
+                    <option value="hu">Hungarian</option>
+                    <option value="is">Icelandic</option>
+                    <option value="id">Indonesian</option>
+                    <option value="ga">Irish</option>
+                    <option value="it">Italian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="jw">Javanese</option>
+                    <option value="kn">Kannada</option>
+                    <option value="km">Khmer</option>
+                    <option value="ko">Korean</option>
+                    <option value="lo">Lao</option>
+                    <option value="la">Latin</option>
+                    <option value="lv">Latvian</option>
+                    <option value="lt">Lithuanian</option>
+                    <option value="mk">Macedonian</option>
+                    <option value="ms">Malay</option>
+                    <option value="mt">Maltese</option>
+                    <option value="mr">Marathi</option>
+                    <option value="no">Norwegian</option>
+                    <option value="fa">Persian</option>
+                    <option value="pl">Polish</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="ro">Romanian</option>
+                    <option value="ru">Russian</option>
+                    <option value="sr">Serbian</option>
+                    <option value="sk">Slovak</option>
+                    <option value="sl">Slovenian</option>
+                    <option value="es">Spanish</option>
+                    <option value="sw">Swahili</option>
+                    <option value="sv">Swedish</option>
+                    <option value="ta">Tamil</option>
+                    <option value="te">Telugu</option>
+                    <option value="th">Thai</option>
+                    <option value="tr">Turkish</option>
+                    <option value="uk">Ukrainian</option>
+                    <option value="ur">Urdu</option>
+                    <option value="vi">Vietnamese</option>
+                    <option value="cy">Welsh</option>
+                    <option value="yi">Yiddish</option>
                 </select>
             </label>
         </div> <!-- close languageChoice -->
@@ -75,14 +179,16 @@
 
 
         <div id="translatedText">
-            <label for="translatedText">
-                <textarea id="output" name="output" autocomplete="off"></textarea>
+            <label for="output">
+                <textarea id="output" name="output" autocomplete="off" readonly></textarea>
             </label>
         </div> <!-- close translatedText -->
 
+        <!--
         <div id="translateButton">
-            <input type="submit" name="submit" id="submit" value="Translate" onclick="requestTranslation()" />
+            <input type="submit" name="submit" id="submit" value="Translate" />
         </div>
+        -->
 
     </div> <!-- close content -->
 </body>
