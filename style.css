@@ -12,6 +12,18 @@ h1 {
     color:#222;
 }
 
+#engine {
+    margin-bottom:20px;
+}
+
+#originalLanguage, #reverse, #translatedLanguage {
+    display:table;
+    margin:5px auto;
+}
+
+#originalText, #translatedText {
+    display:inline-block;
+}
 #input {
     background-color:#EFEFEF;
 }

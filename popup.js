@@ -1,45 +1,90 @@
 function requestTranslation(o) {
+    
     //set variables for the url
-    var SELECT = "json";
+
+    var FUNCTION = "requestTranslation"
+    var ENGINE = "google.translate"; //document.getElementById("engine").value;
+
+    if (ENGINE == "google.translate") {
+        var SELECT = "json";
+    }
+    else {
+        var SELECT = "content";
+    }
+
     var FORMAT = "json";
     var QUERY = encodeURIComponent(document.getElementById('input').value);
-    var ENGINE = "google.translate";
     var FROMLANGUAGE = document.getElementById("originalLanguage").value;
     var TOLANGUAGE = document.getElementById("translatedLanguage").value;
- 
-    var FUNCTION = "requestTranslation"
+    //var CLIENT_ID = "";
+    //var CLIENT_SECRET = encodeURIComponent("");
 
     //set url path and append script in the document
     var script = document.createElement("script");
-    var SRC = "http://query.yahooapis.com/v1/public/yql?q=select%20" + 
-        SELECT +
-        "%20from%20" +
-        ENGINE + 
-        "%20where%20q%3D%22" +
-        QUERY +
-        "%22%20and%20target%3D%22" +
-        TOLANGUAGE + 
-        "%22%20and%20source%3D%22" +
-        FROMLANGUAGE +
-        "%22%3B&format=" +
-        FORMAT +
-        "&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=" +
-        FUNCTION;
+
+    //Google URL
+    if (ENGINE == "google.translate") {
+        var SRC = "http://query.yahooapis.com/v1/public/yql?q=select%20" + 
+            SELECT +
+            "%20from%20" +
+            ENGINE + 
+            "%20where%20q%3D%22" +
+            QUERY +
+            "%22%20and%20target%3D%22" +
+            TOLANGUAGE + 
+            "%22%20and%20source%3D%22" +
+            FROMLANGUAGE +
+            "%22%3B&format=" +
+            FORMAT +
+            "&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=" +
+            FUNCTION;
+    }
+    //Bing URL
+    else {
+        var SRC = "http://query.yahooapis.com/v1/public/yql?q=select%20" +
+            SELECT +
+            "%20from%20" +
+            ENGINE +
+            "%20where%20text%3D%22" +
+            QUERY +
+            "%22%20and%20client_id%3D%22" +
+            CLIENT_ID +
+            "%22%20and%20client_secret%3D%22" +
+            CLIENT_SECRET +
+            "%22%20and%20from%3D%22" +
+            FROMLANGUAGE +
+            "%22%20and%20to%3D%22" +
+            TOLANGUAGE +
+            "%22&format=" +
+            FORMAT +
+            "&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=" +
+            FUNCTION;
+    }
+
     script.src = SRC;
     $("body").append(script);           
+    
 
     //fetch data from url returned data
-    var items = o.query.results.json[0].json.json.json[0];
+    //Google fetching
+    if (ENGINE == "google.translate") {
+        var translatedText= o.query.results.json[0].json.json.json[0];
+    }
+    //Bing fetching
+    else {
+        var translatedText= o.query.results.string.content;
+    }
+
 
     //var output = '';
-    //for(var i=0;i<items.length;i++){
-    //  var translation = items[0].json.json[i];
+    //for(var i=0;i<translatedText.length;i++){
+    //  var translation = translatedText[i];
     //  output += "<h3>"+translation+"</h3>";
     //}
     // Place news stories in div tag
 
     //send fetched data to the output textarea
-    document.getElementById('output').innerHTML = items;
+    document.getElementById('output').innerHTML = translatedText;
 }
 
 function reverseLanguage() {
