@@ -63,7 +63,7 @@ function requestTranslation(o) {
     }
 
     //***********Commented this out**********
-    // script.src = SRC; //the problem with this is that it creates a link to an online file which is prohibited by the CSP in extensions
+    // script.src = SRC; //the problem with this is that it creates inline javascript which is prohibited by the CSP in extensions
     // $("body").append(script);
 
     //fetch data from url returned data
