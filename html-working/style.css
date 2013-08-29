@@ -1,0 +1,43 @@
+body{
+    text-align:center;
+    min-width:210px;
+    min-height:300px;
+    overflow-x:hidden;
+    background-image:url('texture.jpg');
+    background-size:230px 680px;
+}
+
+h1 {
+    font-family:"Century Gothic",	 /* Windows (HP printer) */ "Avant Garde Gothic",	/* HP font name */ "Avant Garde",	 /* MacOS */ "URW Gothic L",	 /* Unix+X+FontConfig */ /* Fallback options */ helvetica,	 /* Unix+X, MacOS */ sans-serif;
+    color:#222;
+}
+
+#engine {
+    margin-bottom:20px;
+}
+
+#originalLanguage, #reverse, #translatedLanguage {
+    display:table;
+    margin:5px auto;
+}
+
+#originalText, #translatedText {
+    display:inline-block;
+}
+#input {
+    background-color:#EFEFEF;
+}
+#output {
+    background-color:#DDD;
+}
+
+#beta {font-size:75%;vertical-align:bottom;color:#EEE;}
+
+textarea{border-radius:2px;min-height:100px;box-shadow: 3px 3px 3px #999;border:none;resize:none;}
+select{border-radius:5px;box-shadow: 2px 2px 2px #999;border:none;}
+
+#submit {
+    border-radius:1px;
+    background-color:white;
+    font-weight:bold;
+}
